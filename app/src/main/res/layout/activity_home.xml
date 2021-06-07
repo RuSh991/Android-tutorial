@@ -1,63 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/uni1">
 
-    <EditText
-        android:id="@+id/First"
-        android:layout_width="match_parent"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardy"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="348dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Second" />
+        android:layout_centerInParent="true"
+        app:cardCornerRadius="60dp"
+        app:cardElevation="6dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <Button
+                android:id="@+id/btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Don't click me!"
+                android:textSize="35sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:textColor="#E91E63"
+                android:layout_centerHorizontal="true">
+            </Button>
 
-    <EditText
-        android:id="@+id/Second"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="304dp"
-        app:layout_constraintBottom_toTopOf="@+id/First"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/rush"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ruchita"
+                android:textSize="60sp"
+                android:textStyle="italic"
+                android:textColor="#080237"
+                android:textAllCaps="true"
+                android:layout_below="@+id/btn"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true">
+            </TextView>
 
-    <Button
-        android:id="@+id/Plus"
+
+
+            <EditText
+                android:id="@+id/edi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="40sp"
+                android:textStyle="italic"
+                android:layout_below="@+id/rush">
+            </EditText>
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/CardView.Dark"
+                android:layout_toLeftOf="@+id/rush"
+                android:layout_toStartOf="@+id/rush"
+                android:layout_below="@+id/btn">
+            </ProgressBar>
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ruch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="+"
-        app:layout_constraintBottom_toTopOf="@+id/First"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Second" />
+        android:text="Abhi"
+        android:layout_below="@+id/cardy"
+        android:layout_centerInParent="true"
+        app:icon="@drawable/ic_home"
+        app:iconGravity="textTop">
 
-    <Button
-        android:id="@+id/Minus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="-"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Plus" />
+    </com.google.android.material.button.MaterialButton>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="224dp"
-        android:text="Answer"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/First" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
 

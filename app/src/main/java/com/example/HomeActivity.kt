@@ -2,35 +2,28 @@ package com.example
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.new1.databinding.ActivityHomeBinding
 import java.lang.NullPointerException
+import android.view.*
+import com.example.new1.R
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding:ActivityHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= ActivityHomeBinding.inflate(layoutInflater)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.Plus.setOnClickListener {
-            val one =binding.First.text.toString()
-            val two =binding.Second.text.toString()
-
-            if(one.isNotEmpty() && two.isNotEmpty()){
-                val result=one.toInt()+two.toInt()
-                binding.textView.text= result.toString()
+        binding.ruch.setOnClickListener {
+            if(binding.cardy.visibility==View.VISIBLE){
+                binding.cardy.visibility=View.INVISIBLE
+            }
+            else{
+                binding.cardy.visibility=View.VISIBLE
             }
         }
-        binding.Minus.setOnClickListener {
-            val one =binding.First.text.toString()
-            val two =binding.Second.text.toString()
-
-            if(one.isNotEmpty() && two.isNotEmpty()){
-                binding.textView.text= subtract(one.toInt(), two.toInt())
-            }
+        binding.btn.setOnClickListener {
+            binding.root.setBackgroundColor(R.color.purple_700)
         }
-    }
-    fun subtract(x: Int, y: Int):String{
-        val result=x-y
-        return result.toString()
     }
 }

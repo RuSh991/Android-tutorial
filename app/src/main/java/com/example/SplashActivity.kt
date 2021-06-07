@@ -13,9 +13,8 @@ class SplashActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         Handler().postDelayed({
-            val intent= Intent(this@SplashActivity,HomeActivity::class.java)
+            val intent= Intent(this@SplashActivity,HomeActivity::class.java).putExtra("email",true)
             startActivity(intent)
         },3000)
-
     }
 }

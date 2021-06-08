@@ -14,16 +14,6 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.ruch.setOnClickListener {
-            if(binding.cardy.visibility==View.VISIBLE){
-                binding.cardy.visibility=View.INVISIBLE
-            }
-            else{
-                binding.cardy.visibility=View.VISIBLE
-            }
-        }
-        binding.btn.setOnClickListener {
-            binding.root.setBackgroundColor(R.color.purple_700)
-        }
+        binding.cardy.visibility=View.VISIBLE
     }
 }

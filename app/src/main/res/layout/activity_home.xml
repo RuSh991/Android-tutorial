@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/uni1">
+    android:orientation="vertical">
+
 
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardy"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_width="400dp"
+        android:layout_height="310dp"
         android:layout_centerInParent="true"
-        app:cardCornerRadius="60dp"
-        app:cardElevation="6dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="8dp"
         android:visibility="gone"
         tools:visibility="visible"
         >
@@ -22,67 +22,49 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
-            <Button
-                android:id="@+id/btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Don't click me!"
-                android:textSize="35sp"
-                android:textStyle="bold"
-                android:textAllCaps="true"
-                android:textColor="#E91E63"
-                android:layout_centerHorizontal="true">
-            </Button>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:id="@+id/vir"
+                android:background="@drawable/virus1"
+                android:layout_alignParentTop="true">
+
+            </ImageView>
+
 
             <TextView
                 android:id="@+id/rush"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ruchita"
-                android:textSize="60sp"
-                android:textStyle="italic"
-                android:textColor="#080237"
-                android:textAllCaps="true"
-                android:layout_below="@+id/btn"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true">
-            </TextView>
-
-
-
-            <EditText
-                android:id="@+id/edi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="40sp"
-                android:textStyle="italic"
-                android:layout_below="@+id/rush">
-            </EditText>
+                android:text="How globetrotters increase speed of microbial resistance-DTnext"
+                android:textSize="15.9sp"
+                android:textStyle="bold"
+                android:textColor="#080237"
+                android:layout_below="@+id/vir"
+                android:layout_marginTop="12sp"
+                android:layout_marginLeft="10sp"
+                android:textAlignment="viewStart"
+                android:gravity="start">
+            </TextView>
 
-            <ProgressBar
-                android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/CardView.Dark"
-                android:layout_toLeftOf="@+id/rush"
-                android:layout_toStartOf="@+id/rush"
-                android:layout_below="@+id/btn">
-            </ProgressBar>
+                android:id="@+id/Content"
+                android:text="People who travel around the globe are likely to pick up numerous genes that promote microbial resistance, which can then spread when travellers return home and potentially initiate a bacterial outbreak, suggests a new research"
+                android:textSize="15sp"
+                android:textColor="#424040"
+                android:layout_marginLeft="10sp"
+                android:layout_below="@+id/rush"
+                android:textAlignment="viewStart"
+                android:gravity="start">
 
+            </TextView>
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/ruch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Abhi"
-        android:layout_below="@+id/cardy"
-        android:layout_centerInParent="true"
-        app:icon="@drawable/ic_home"
-        app:iconGravity="textTop">
 
-    </com.google.android.material.button.MaterialButton>
 
 </RelativeLayout>
 

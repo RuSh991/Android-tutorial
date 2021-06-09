@@ -1,70 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
+
+    <Spinner
+        android:id="@+id/spMonths"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/months"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardy"
-        android:layout_width="400dp"
-        android:layout_height="310dp"
-        android:layout_centerInParent="true"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="8dp"
-        android:visibility="gone"
-        tools:visibility="visible"
-        >
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:id="@+id/vir"
-                android:background="@drawable/virus1"
-                android:layout_alignParentTop="true">
-
-            </ImageView>
-
-
-            <TextView
-                android:id="@+id/rush"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="How globetrotters increase speed of microbial resistance-DTnext"
-                android:textSize="15.9sp"
-                android:textStyle="bold"
-                android:textColor="#080237"
-                android:layout_below="@+id/vir"
-                android:layout_marginTop="12sp"
-                android:layout_marginLeft="10sp"
-                android:textAlignment="viewStart"
-                android:gravity="start">
-            </TextView>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/Content"
-                android:text="People who travel around the globe are likely to pick up numerous genes that promote microbial resistance, which can then spread when travellers return home and potentially initiate a bacterial outbreak, suggests a new research"
-                android:textSize="15sp"
-                android:textColor="#424040"
-                android:layout_marginLeft="10sp"
-                android:layout_below="@+id/rush"
-                android:textAlignment="viewStart"
-                android:gravity="start">
-
-            </TextView>
-
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
 
 
 
-</RelativeLayout>
+
 

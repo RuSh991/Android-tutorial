@@ -10,23 +10,46 @@ import android.view.*
 import android.widget.Adapter
 import android.widget.AdapterView
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.new1.R
 
 class HomeActivity : AppCompatActivity() {
-    private lateinit var binding:ActivityHomeBinding
+
+    private lateinit var newRecyclerView: RecyclerView
+    private lateinit var newArrayList: ArrayList<Unicorn>
+    lateinit var imageId: Array<Int>
+    lateinit var heading: Array<String>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        binding= ActivityHomeBinding.inflate(layoutInflater)
-        binding.spMonths.onItemSelectedListener=object :AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        imageId= arrayOf(
+            R.drawable.ic_home,
+            R.drawable.ic_profile,
+            R.drawable.ic_snow,
+            R.drawable.ic_settings
+        )
 
-                Toast.makeText(this@HomeActivity,"You have selected ${adapterView?.getItemAtPosition(position).toString()}", Toast.LENGTH_LONG).show()
-            }
+        heading= arrayOf(
+            "ONE",
+            "TWO",
+            "THREE",
+            "FOUR"
+        )
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
+        newRecyclerView=findViewById(R.id.recyclerView)
+        newRecyclerView.layoutManager=LinearLayoutManager(this)
+        newRecyclerView.setHasFixedSize(true)
+        newArrayList= arrayListOf<Unicorn>()
+        getUserData()
 
-            }
+    }
+
+    private fun getUserData() {
+        for(i in imageId.indices){
+            val unicorn=Unicorn(imageId[i],heading[i])
+            newArrayList.add(unicorn)
+            newRecyclerView.adapter=MyAdapter(newArrayList)
         }
     }
 }

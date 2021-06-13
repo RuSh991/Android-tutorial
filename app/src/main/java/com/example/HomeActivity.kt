@@ -1,6 +1,7 @@
 package com.example
 
 import android.graphics.ColorSpace
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,41 +12,29 @@ import android.widget.Adapter
 import android.widget.AdapterView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import coil.transform.BlurTransformation
+import coil.transform.RoundedCornersTransformation
 import com.example.new1.R
 
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
-    private val viewModel by viewModels<MainActivityViewModel>()
 
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        viewModel.seconds().observe(this, Observer{
-            binding.numberTxt.text=it.toString()
-        })
-        viewModel.finished.observe(this,Observer{
-            if(it){
-                Toast.makeText(this,"Finished!",Toast.LENGTH_SHORT).show()
-            }
-        })
-        binding.button1.setOnClickListener {
-            if(binding.editTextTextPersonName.text.isEmpty() || binding.editTextTextPersonName.text.length<4){
-                Toast.makeText(this,"Invalid input",Toast.LENGTH_LONG).show()
-            }
-            else{
-                viewModel.timerValue.value=binding.editTextTextPersonName.text.toString().toLong()
-                viewModel.startTimer()
-            }
-        }
-        binding.button2.setOnClickListener {
-            viewModel.stopTimer()
+        binding.imageView.load("https://i.ytimg.com/vi/G6PGE6y6AM4/hqdefault.jpg"){
+            crossfade(true)
+            crossfade(1000)
+            transformations(BlurTransformation(applicationContext,20f),RoundedCornersTransformation(50f))
         }
     }
 }

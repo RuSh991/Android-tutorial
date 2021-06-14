@@ -15,6 +15,7 @@ import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -25,16 +26,9 @@ import com.example.new1.R
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
-
-    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.imageView.load("https://i.ytimg.com/vi/G6PGE6y6AM4/hqdefault.jpg"){
-            crossfade(true)
-            crossfade(1000)
-            transformations(BlurTransformation(applicationContext,20f),RoundedCornersTransformation(50f))
-        }
     }
 }

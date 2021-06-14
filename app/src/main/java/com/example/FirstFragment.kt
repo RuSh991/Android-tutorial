@@ -18,7 +18,7 @@ import okhttp3.Dispatcher
 
 class FirstFragment : Fragment() {
 
-    private val scope= CoroutineScope(Dispatcher.IO+CoroutineName("Myscope"))
+    private val scope= CoroutineScope(CoroutineName("Myscope"))
     private var _binding: FragmentFirstBinding?=null
     private val binding get() = _binding!!
 
@@ -29,11 +29,26 @@ class FirstFragment : Fragment() {
     ):View? {
         // Inflate the layout for this fragment
         _binding= FragmentFirstBinding.inflate(inflater,container, false)
-        GlobalScope.launch {
-            while(true){
-                delay(1000L)
-                Log.d("Coroutine","Running...")
+        val mainJob=scope.launch {
+            val job1=launch{
+                while(true){
+                    yield()
+                    Log.d("Coroutine","Job 1 Running...")
+                }
             }
+            val job2=launch {
+                Log.d("Coroutine","Job 2 Running...")
+            }
+            delay(1000L)
+            Log.d("Coroutine","Job 1 Cancelling...")
+            job2.cancelAndJoin()
+            Log.d("Coroutine","Job 1 Cancelled")
+        }
+        runBlocking {
+            delay(2000L)
+            Log.d("Coroutine","Main job Cancelling...")
+            mainJob.cancelAndJoin()
+            Log.d("Coroutine","Main job Cancelled")
         }
         binding.clickButton.setOnClickListener {
             findNavController().navigate(R.id.action_firstFragment_to_secondFragment)

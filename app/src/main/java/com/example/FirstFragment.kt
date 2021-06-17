@@ -30,20 +30,12 @@ class FirstFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
 
-        runBlocking {
+        GlobalScope.launch(Dispatchers.IO) {
             Log.d("Coroutine", this.coroutineContext.toString())
-            delay(5000L)
-            GlobalScope.launch {
-                Log.d("Coroutine", "Coroutine #1")
-                delay(5000L)
-            }
-            GlobalScope.launch {
-                Log.d("Coroutine", "Coroutine #2")
-                delay(5000L)
+            withContext(Dispatchers.Main){
+                Log.d("Coroutine", this.coroutineContext.toString())
             }
         }
-        Log.d("Coroutine", "RunBlocking completed")
-
         binding.clickButton.setOnClickListener {
             findNavController().navigate(R.id.action_firstFragment_to_secondFragment)
         }

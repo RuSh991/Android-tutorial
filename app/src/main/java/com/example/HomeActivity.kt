@@ -22,13 +22,27 @@ import coil.load
 import coil.transform.BlurTransformation
 import coil.transform.RoundedCornersTransformation
 import com.example.new1.R
+import com.example.repository.Repository
 
 class HomeActivity : AppCompatActivity() {
+    private lateinit var viewModel: MainViewModel
 
-    private lateinit var binding: ActivityHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= ActivityHomeBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_home)
+        val repository=Repository()
+        val viewModelFactory=MainViewModelFactory(repository)
+        viewModel=ViewModelProvider(this,viewModelFactory).get(MainViewModel::class.java)
+        viewModel.getPost()
+        viewModel.myResponse.observe(this, Observer { response ->
+            if (response.isSuccessful) {
+                Log.d("Response", response.body()?.userId.toString())
+                Log.d("Response", response.body()?.Id.toString())
+                Log.d("Response", response.body()?.title!!)
+                Log.d("Response", response.body()?.body!!)
+            } else {
+                Log.d("Response", response.errorBody().toString())
+            }
+        })
     }
 }

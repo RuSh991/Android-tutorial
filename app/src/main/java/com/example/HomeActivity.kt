@@ -26,23 +26,27 @@ import com.example.repository.Repository
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
+    private lateinit var binding: ActivityHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        binding= ActivityHomeBinding.inflate(layoutInflater)
         val repository=Repository()
         val viewModelFactory=MainViewModelFactory(repository)
         viewModel=ViewModelProvider(this,viewModelFactory).get(MainViewModel::class.java)
-        viewModel.getPost()
-        viewModel.myResponse.observe(this, Observer { response ->
+
+        binding.button.setOnClickListener {
+            Log.d("Response", "onCreate: ")
+            val myNumber=binding.numberEdittext.text.toString()
+            viewModel.getPost2(Integer.parseInt(myNumber))
+
+        }
+        viewModel.myResponse2.observe(this, Observer { response ->
+            Log.d("GET", response.toString())
             if (response.isSuccessful) {
-                Log.d("Response", response.body()?.userId.toString())
-                Log.d("Response", response.body()?.Id.toString())
-                Log.d("Response", response.body()?.title!!)
-                Log.d("Response", response.body()?.body!!)
-            } else {
-                Log.d("Response", response.errorBody().toString())
-            }
+                binding.textView.text = response.body().toString()
+            } else binding.textView.text = response.code().toString()
         })
     }
 }

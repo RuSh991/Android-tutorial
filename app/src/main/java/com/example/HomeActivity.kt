@@ -30,8 +30,8 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
         binding= ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         val repository=Repository()
         val viewModelFactory=MainViewModelFactory(repository)
         viewModel=ViewModelProvider(this,viewModelFactory).get(MainViewModel::class.java)

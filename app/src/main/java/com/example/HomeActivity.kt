@@ -39,10 +39,10 @@ class HomeActivity : AppCompatActivity() {
         binding.button.setOnClickListener {
             Log.d("Response", "onCreate: ")
             val myNumber=binding.numberEdittext.text.toString()
-            viewModel.getPost2(Integer.parseInt(myNumber))
+            viewModel.getPost3(Integer.parseInt(myNumber))
 
         }
-        viewModel.myResponse2.observe(this, Observer { response ->
+        viewModel.myResponse3.observe(this, Observer { response ->
             Log.d("GET", response.toString())
             if (response.isSuccessful) {
                 binding.textView.text = response.body().toString()

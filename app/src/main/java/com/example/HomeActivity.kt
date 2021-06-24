@@ -21,32 +21,32 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.BlurTransformation
 import coil.transform.RoundedCornersTransformation
+import com.example.model.Post
 import com.example.new1.R
 import com.example.repository.Repository
+import retrofit2.Response
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
     private lateinit var binding: ActivityHomeBinding
+    private lateinit var adapter: MyAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= ActivityHomeBinding.inflate(layoutInflater)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val repository=Repository()
-        val viewModelFactory=MainViewModelFactory(repository)
-        viewModel=ViewModelProvider(this,viewModelFactory).get(MainViewModel::class.java)
+        val repository = Repository()
+        val viewModelFactory = MainViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+        adapter = MyAdapter()
+        binding.recyclerView.adapter=adapter
 
-        binding.button.setOnClickListener {
-            Log.d("Response", "onCreate: ")
-            val myNumber=binding.numberEdittext.text.toString()
-            viewModel.getPost3(Integer.parseInt(myNumber))
-
-        }
+        viewModel.getPost3(2)
         viewModel.myResponse3.observe(this, Observer { response ->
             Log.d("GET", response.toString())
             if (response.isSuccessful) {
-                binding.textView.text = response.body().toString()
-            } else binding.textView.text = response.code().toString()
+                this.adapter.submitList(response.body()!!)
+            }
         })
     }
 }

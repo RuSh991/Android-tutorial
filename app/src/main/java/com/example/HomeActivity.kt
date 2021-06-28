@@ -24,10 +24,13 @@ import coil.transform.RoundedCornersTransformation
 import com.example.model.Post
 import com.example.new1.R
 import com.example.repository.Repository
+import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Response
+import timber.log.Timber
+@AndroidEntryPoint
 
 class HomeActivity : AppCompatActivity() {
-    private lateinit var viewModel: MainViewModel
+    private val viewModel by viewModels<MainViewModel>()
     private lateinit var binding: ActivityHomeBinding
     private lateinit var adapter: MyAdapter
 
@@ -35,18 +38,24 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val repository = Repository()
-        val viewModelFactory = MainViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+
         adapter = MyAdapter()
         binding.recyclerView.adapter=adapter
 
         viewModel.getPost3(2)
         viewModel.myResponse3.observe(this, Observer { response ->
-            Log.d("GET", response.toString())
+            Timber.i(response.toString())
             if (response.isSuccessful) {
                 this.adapter.submitList(response.body()!!)
             }
         })
+    }
+    override fun onStart(){
+        super.onStart()
+        Timber.i("onStart")
+    }
+    override fun onDestroy(){
+        super.onDestroy()
+        Timber.i("onDestroy")
     }
 }

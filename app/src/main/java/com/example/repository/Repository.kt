@@ -1,21 +1,23 @@
 package com.example.repository
 
-import com.example.api.RetrofitInstance
+import com.example.api.SimpleApi
 import com.example.model.Post
 import retrofit2.Response
-import retrofit2.Retrofit
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class Repository {
+@Singleton
+class Repository @Inject constructor(private val simpleApi: SimpleApi) {
 
     suspend fun getPost(): Response<Post> {
-        return RetrofitInstance.api.getPost()
+        return simpleApi.getPost()
     }
 
     suspend fun getPost2(number: Int): Response<Post>{
-        return RetrofitInstance.api.getPost2(number)
+        return simpleApi.getPost2(number)
     }
 
     suspend fun getPost3(number: Int): Response<List<Post>>{
-        return RetrofitInstance.api.getPost3(number)
+        return simpleApi.getPost3(number)
     }
 }
